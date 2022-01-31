@@ -5,16 +5,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">
+                    <h1>Welcome to {{ auth::user()->name }}'s Dashboard!</h1>
+                    <h4>User ID: {{ auth::id() }}</h4>
+                </div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    <h2>Available operations:</h2>
+                    <ul>
+                        <li> <a href="#">Placeholder</a> </li>
+                        <li><a href="#">Placeholder</a></li>
+                        <li><a href="#">Placeholder</a></li>
+                        <li><a href="#">Placeholder</a></li>
+                        <li><a href="#">Placeholder</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
