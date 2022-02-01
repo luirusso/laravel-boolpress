@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1 class="mb-5">
-            Edit {{ $post->title }}
+            Edit "{{ $post->title }}"
         </h1>
         
         {{-- VALIDATION ERRORS --}}
