@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Post;
 
 class PostController extends Controller
@@ -41,9 +42,30 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+        ], [
+            'required' => 'The ":attribute" is a required field!',
+            'max' => 'Max :max characters allowed for this field!'
         ]);
 
         $data = $request->all();
+
+        $new_post = new Post();
+
+        // GENERATE UNIQUE SLUG
+        $slug = Str::slug($data['title'], '-');
+        $count = 1;
+
+        while(Post::where('slug', $slug)->first() ) {
+            $slug .= '-' . $count;
+            $count++;
+        }
+        $data['slug'] = $slug;
+
+        $new_post->fill($data); //!!REQUIRES MASS ASSIGNMENT ON MODEL!!
+
+        $new_post->save();
+
+        return redirect()->route('admin.posts.show', $new_post->slug);
     }
 
     /**
@@ -71,7 +93,13 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        
+        if(! $post) {
+            abort(404);
+        }
+
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
