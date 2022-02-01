@@ -31,7 +31,9 @@
                             <td>
                                 {{ $post->title }}
                             </td>
-                            <td>Show</td>
+                            <td>
+                                <a class="btn btn-primary" href="{{ route('admin.posts.show', $post->slug) }}">Show</a>
+                            </td>
                             <td>Edit</td>
                             <td>Delete</td>
                         </tr>

@@ -12894,7 +12894,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\luiru\Desktop\laravel-boolpress\resources\js\front-office.js */"./resources/js/front-office.js");
+module.exports = __webpack_require__(/*! C:\Users\luiru\Documents\Esercizi Boolean\laravel-boolpress\resources\js\front-office.js */"./resources/js/front-office.js");
 
 
 /***/ })
