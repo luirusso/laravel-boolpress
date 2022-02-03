@@ -37,6 +37,18 @@
                 @enderror
             </div>
 
+            {{-- CATEGORIES --}}
+            <div class="mb-3">
+                <label for="category_id">Category</label>
+                <select class="form-control" name="category_id" id="category_id">
+                    <option value="">Uncategorized</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}"
+                            @if($category->id == old('category_id')) selected @endif>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary">Create Post</button>
         </form>
     </div>

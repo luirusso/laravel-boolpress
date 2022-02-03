@@ -14,6 +14,7 @@ class Post extends Model
         'title',
         'content',
         'slug',
+        'category_id',
     ];
 
     /**

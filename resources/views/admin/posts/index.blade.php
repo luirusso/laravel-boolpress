@@ -23,8 +23,11 @@
                         <th>
                             Title
                         </th>
+                        <th>
+                            Category
+                        </th>
                         <th colspan="3">
-
+                            Actions
                         </th>
                     </tr>
                 </thead>
@@ -36,6 +39,9 @@
                             </td>
                             <td>
                                 {{ $post->title }}
+                            </td>
+                            <td>
+                                @if($post->category) {{ $post->category->name }} @else Uncategorized @endif
                             </td>
                             <td>
                                 <a class="btn btn-primary" href="{{ route('admin.posts.show', $post->slug) }}">Show</a>
