@@ -148,6 +148,12 @@ class PostController extends Controller
 
         $post->update($data); // NO SAVE NEEDED
 
+        if(array_key_exists('tags', $data)) {
+            $post->tags()->sync($data['tags']);
+        } else {
+            $post->tags()->detach();
+        }
+
         return redirect()->route('admin.posts.show', $post->slug);
     }
 
@@ -162,6 +168,8 @@ class PostController extends Controller
         $post = Post::find($id);
 
         $post->delete();
+
+        $post->tags()->detach();
 
         return redirect()->route('admin.posts.index')->with('deleted', $post->title);
     }

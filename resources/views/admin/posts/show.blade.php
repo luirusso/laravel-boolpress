@@ -17,7 +17,7 @@
             <a class="btn btn-primary" href="{{ route('admin.posts.index') }}">Back to Archive</a>
         </div>
 
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-md-6">
                 {!! $post->content !!}
             </div>
