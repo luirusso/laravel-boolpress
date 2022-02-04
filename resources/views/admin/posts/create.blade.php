@@ -44,11 +44,37 @@
                     <option value="">Uncategorized</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}"
-                            @if($category->id == old('category_id')) selected @endif>{{ $category->name }}</option>
+                            @if($category->id == old('category_id')) selected @endif>{{ $category->name }}
+                        </option>
                     @endforeach
+                    @error('category_id')
+                        <div class="text-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </select>
             </div>
 
+            {{-- TAGS --}}
+            <div class="mb-3">
+                <h4>Tags</h4>
+
+                @foreach($tags as $tag)
+                    <span class="d-inline-block mr-3">
+                        <input type="checkbox" name="tags[]" id="tag{{ $loop->iteration }}" value="{{ $tag->id }}" @if(in_array($tag->id, old('tags' , [])) ) checked @endif>
+
+                        <label for="tag{{ $loop->iteration }}">
+                            {{ $tag->name }}
+                        </label>
+                    </span>
+                @endforeach
+                @error('tags')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            
             <button type="submit" class="btn btn-primary">Create Post</button>
         </form>
     </div>

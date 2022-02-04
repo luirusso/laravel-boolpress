@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Post;
 use App\Category;
+use App\Tag;
+
 
 class PostController extends Controller
 {
@@ -30,8 +32,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('admin.posts.create', compact('categories'));
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -42,15 +45,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
-        ], [
-            'required' => 'The ":attribute" is a required field!',
-            'max' => 'Max :max characters allowed for this field!'
-        ]);
-
+        $request->validate($this->validation_rules(), $this->validation_messages() );
         $data = $request->all();
+
+        // dd($data);
 
         $new_post = new Post();
 
@@ -68,6 +66,10 @@ class PostController extends Controller
 
         $new_post->save();
 
+        if(array_key_exists('tags', $data)) {
+            $new_post->tags()->attach($data['tags']);
+        }
+        
         return redirect()->route('admin.posts.show', $new_post->slug);
     }
 
@@ -98,12 +100,13 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::all();
+        $tags = Tag::all();
         
         if(! $post) {
             abort(404);
         }
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -174,6 +177,7 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id',
         ];
     }
 
