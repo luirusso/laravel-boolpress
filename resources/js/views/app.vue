@@ -5,7 +5,17 @@
         </h1>
 
         <div v-if="posts">
-            Posts list here
+            <article class="mb-3" v-for="post in posts" :key="`post-${ post.id }`">
+                <h2>
+                    {{ post.title }}
+                </h2>
+                <div class="mb-3">
+                    {{ post.created_at }}
+                </div>
+                <p>
+                    {{ post.content }}
+                </p>
+            </article>
         </div>
         <div v-else>
             Loading posts...

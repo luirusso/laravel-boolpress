@@ -1925,6 +1925,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
@@ -2437,7 +2447,39 @@ var render = function () {
     _c("h1", { staticClass: "my-5" }, [_vm._v("\n        Our Blog\n    ")]),
     _vm._v(" "),
     _vm.posts
-      ? _c("div", [_vm._v("\n        Posts list here\n    ")])
+      ? _c(
+          "div",
+          _vm._l(_vm.posts, function (post) {
+            return _c(
+              "article",
+              { key: "post-" + post.id, staticClass: "mb-3" },
+              [
+                _c("h2", [
+                  _vm._v(
+                    "\n                " + _vm._s(post.title) + "\n            "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(post.created_at) +
+                      "\n            "
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(post.content) +
+                      "\n            "
+                  ),
+                ]),
+              ]
+            )
+          }),
+          0
+        )
       : _c("div", [_vm._v("\n        Loading posts...\n    ")]),
   ])
 }
