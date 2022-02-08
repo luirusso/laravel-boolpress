@@ -19,33 +19,54 @@
                 </p>
             </article>
 
-            <!-- PAGINATION -->
-            <button
-                class="btn btn-primary mr-3"
-                :disabled="pagination.current === 1"
-                @click="getPosts(pagination.current - 1)"
-            >
-                Prev
-            </button>
+            <section class="pagination">
+                <!-- PAGINATION -->
+                <button
+                    class="btn btn-primary mr-3"
+                    :disabled="pagination.current === 1"
+                    @click="getPosts(pagination.current - 1)"
+                >
+                    Prev
+                </button>
 
-            <button
-                class="btn btn-primary"
-                :disabled="pagination.current === pagination.last"
-                @click="getPosts(pagination.current + 1)"
-            >
-                Next
-            </button>
+                <button
+                    class="btn mr-3"
+                    :class="
+                        pagination.current === i
+                            ? 'btn-primary'
+                            : 'btn-secondary'
+                    "
+                    v-for="i in pagination.last"
+                    :key="`page-${i}`"
+                    @click="getPosts(i)"
+                >
+                    {{ i }}
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    :disabled="pagination.current === pagination.last"
+                    @click="getPosts(pagination.current + 1)"
+                >
+                    Next
+                </button>
+            </section>
         </div>
-        <div v-else>Loading posts...</div>
+        
+        <Loader v-else />
+
     </div>
 </template>
 
 <script>
 import axios from "axios";
+import Loader from "../components/Loader"
 
 export default {
     name: "App",
-    components: {},
+    components: {
+        Loader,
+    },
     data() {
         return {
             posts: null,
