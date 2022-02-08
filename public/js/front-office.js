@@ -1937,7 +1937,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'App',
+  name: "App",
   components: {},
   data: function data() {
     return {
@@ -1951,9 +1951,21 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/posts').then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/posts").then(function (res) {
         _this.posts = res.data;
       });
+    },
+    getExcerpt: function getExcerpt(text, maxLength) {
+      if (text.length > maxLength) {
+        return text.substring(0, maxLength) + "...";
+      }
+
+      return text;
+    },
+    formatDate: function formatDate(postDate) {
+      var date = new Date(postDate);
+      var formatted = new Intl.DateTimeFormat('it-IT').format(date);
+      return formatted;
     }
   }
 });
@@ -2444,7 +2456,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("h1", { staticClass: "my-5" }, [_vm._v("\n        Our Blog\n    ")]),
+    _c("h1", { staticClass: "my-5" }, [_vm._v("Our Blog")]),
     _vm._v(" "),
     _vm.posts
       ? _c(
@@ -2463,7 +2475,7 @@ var render = function () {
                 _c("div", { staticClass: "mb-3" }, [
                   _vm._v(
                     "\n                " +
-                      _vm._s(post.created_at) +
+                      _vm._s(_vm.formatDate(post.created_at)) +
                       "\n            "
                   ),
                 ]),
@@ -2471,7 +2483,7 @@ var render = function () {
                 _c("p", [
                   _vm._v(
                     "\n                " +
-                      _vm._s(post.content) +
+                      _vm._s(_vm.getExcerpt(post.content, 100)) +
                       "\n            "
                   ),
                 ]),
@@ -2480,7 +2492,7 @@ var render = function () {
           }),
           0
         )
-      : _c("div", [_vm._v("\n        Loading posts...\n    ")]),
+      : _c("div", [_vm._v("Loading posts...")]),
   ])
 }
 var staticRenderFns = []
