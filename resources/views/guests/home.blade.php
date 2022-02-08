@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-    <h1>Front Office App</h1>
     <div id="root"></div>
 
     <script src="{{ asset('js/front-office.js')}}"></script>
