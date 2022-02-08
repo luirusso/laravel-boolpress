@@ -18,6 +18,23 @@
                     {{ getExcerpt(post.content, 100) }}
                 </p>
             </article>
+
+            <!-- PAGINATION -->
+            <button
+                class="btn btn-primary mr-3"
+                :disabled="pagination.current === 1"
+                @click="getPosts(pagination.current - 1)"
+            >
+                Prev
+            </button>
+
+            <button
+                class="btn btn-primary"
+                :disabled="pagination.current === pagination.last"
+                @click="getPosts(pagination.current + 1)"
+            >
+                Next
+            </button>
         </div>
         <div v-else>Loading posts...</div>
     </div>
@@ -32,16 +49,23 @@ export default {
     data() {
         return {
             posts: null,
+            pagination: null,
         };
     },
     created() {
         this.getPosts();
     },
     methods: {
-        getPosts() {
-            axios.get("http://127.0.0.1:8000/api/posts").then((res) => {
-                this.posts = res.data;
-            });
+        getPosts(page = 1) {
+            axios
+                .get(`http://127.0.0.1:8000/api/posts?page=${page}`)
+                .then((res) => {
+                    this.posts = res.data.data;
+                    this.pagination = {
+                        current: res.data.current_page,
+                        last: res.data.last_page,
+                    };
+                });
         },
         getExcerpt(text, maxLength) {
             if (text.length > maxLength) {
@@ -52,9 +76,9 @@ export default {
         formatDate(postDate) {
             const date = new Date(postDate);
 
-            const formatted = new Intl.DateTimeFormat('it-IT').format(date);
+            const formatted = new Intl.DateTimeFormat("it-IT").format(date);
             return formatted;
-        }
+        },
     },
 };
 </script>
