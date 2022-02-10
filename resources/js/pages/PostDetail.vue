@@ -3,17 +3,30 @@
         <div v-if="post">
             <h1 class="mb-5">{{ post.title }}</h1>
             <h4>Category: {{ post.category.name }}</h4>
+
+            <!-- <div class="mb-5">
+                <span v-for="tag in post.tags" :key="`tag-${tag.id}`" class="badge badge-primary mr-2">{{ tag.name }}</span>
+            </div> -->
+
+            <Tags :list="post.tags" class="mb-5" />
+
             <p>{{ post.content }}</p>
         </div>
-        <div v-else>Loading post...</div>
+        <Loader text="Loading post..." v-else />
     </section>
 </template>
 
 <script>
 import axios from "axios";
+import Loader from '../components/Loader';
+import Tags from '../components/Tags'
 
 export default {
     name: "PostDetail",
+    components: {
+        Tags,
+        Loader,
+    },
     data() {
         return {
             post: null,

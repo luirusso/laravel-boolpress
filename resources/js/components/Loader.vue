@@ -1,12 +1,15 @@
 <template>
     <div>
-        Loading posts, wait a sec...
+        {{ text }}
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Loader'
+    name: 'Loader',
+    props: {
+        text: String,
+    }
 }
 </script>
 

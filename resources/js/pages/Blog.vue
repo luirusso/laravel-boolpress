@@ -56,7 +56,7 @@
             </section>
         </div>
 
-        <Loader v-else />
+        <Loader text="Loading post archive..." v-else />
     </div>
 </template>
 
