@@ -23,6 +23,10 @@ class PostController extends Controller
         
         // ONLY POSTS WITH NO CATEGS AND TAGS
         $post = Post::where('slug', $slug)->with(['category', 'tags'])->first();
+        
+        if(! $post) {
+            $post['not_found'] = true;
+        }
 
         return response()->json($post);
     }
