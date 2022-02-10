@@ -2155,6 +2155,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostDetail",
@@ -3697,9 +3698,11 @@ var render = function () {
       ? _c("div", [
           _c("h1", { staticClass: "mb-5" }, [_vm._v(_vm._s(_vm.post.title))]),
           _vm._v(" "),
+          _c("h4", [_vm._v("Category: " + _vm._s(_vm.post.category.name))]),
+          _vm._v(" "),
           _c("p", [_vm._v(_vm._s(_vm.post.content))]),
         ])
-      : _c("div", [_vm._v("Loading posts...")]),
+      : _c("div", [_vm._v("Loading post...")]),
   ])
 }
 var staticRenderFns = []
