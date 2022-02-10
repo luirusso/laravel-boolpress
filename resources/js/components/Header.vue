@@ -1,7 +1,7 @@
 <template>
     <header class="mb-5">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">BoolPress</a>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -22,6 +22,9 @@
                     <li class="nav-item">
                         <router-link class="nav-link" :to="{name: 'about'}">About</router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" :to="{name: 'blog'}">Blog</router-link>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -34,4 +37,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.active {
+    background: rgba(#fff, .1);
+}
+</style>

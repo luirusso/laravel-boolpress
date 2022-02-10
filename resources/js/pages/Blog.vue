@@ -17,6 +17,9 @@
                 <p>
                     {{ getExcerpt(post.content, 100) }}
                 </p>
+                <router-link :to="{ name: 'post-detail', params: { slug: post.slug } }">
+                    Read more
+                </router-link>
             </article>
 
             <section class="pagination">
@@ -52,18 +55,17 @@
                 </button>
             </section>
         </div>
-        
-        <Loader v-else />
 
+        <Loader v-else />
     </div>
 </template>
 
 <script>
 import axios from "axios";
-import Loader from "../components/Loader"
+import Loader from "../components/Loader";
 
 export default {
-    name: "App",
+    name: "Blog",
     components: {
         Loader,
     },
