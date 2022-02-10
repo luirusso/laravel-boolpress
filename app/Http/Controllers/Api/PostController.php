@@ -18,4 +18,12 @@ class PostController extends Controller
 
         return response()->json($posts);
     }
+
+    public function show($slug) {
+        
+        // ONLY POSTS WITH NO CATEGS AND TAGS
+        $post = Post::where('slug', $slug)->first();
+
+        return response()->json($post);
+    }
 }
