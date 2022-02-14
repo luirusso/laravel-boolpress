@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index() {
         // return 'POST JSON HERE';
 
-        $posts = Post::paginate(2);
+        $posts = Post::orderBy('id', 'desc')->paginate(2);
 
         return response()->json($posts);
     }
@@ -26,6 +26,8 @@ class PostController extends Controller
         
         if(! $post) {
             $post['not_found'] = true;
+        } elseif($post->cover) {
+            $post->cover = url('storage/' . $post->cover);
         }
 
         return response()->json($post);

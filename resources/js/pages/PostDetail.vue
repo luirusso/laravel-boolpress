@@ -11,6 +11,10 @@
 
             <Tags :list="post.tags" class="mb-5" />
 
+            <figure v-if="post.cover">
+                <img class="img-fluid" :src="post.cover" :alt="post.title">
+            </figure>
+
             <p>{{ post.content }}</p>
         </div>
         <Loader text="Loading post..." v-else />

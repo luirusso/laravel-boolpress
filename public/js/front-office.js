@@ -2221,6 +2221,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3865,6 +3869,15 @@ var render = function () {
                 staticClass: "mb-5",
                 attrs: { list: _vm.post.tags },
               }),
+              _vm._v(" "),
+              _vm.post.cover
+                ? _c("figure", [
+                    _c("img", {
+                      staticClass: "img-fluid",
+                      attrs: { src: _vm.post.cover, alt: _vm.post.title },
+                    }),
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("p", [_vm._v(_vm._s(_vm.post.content))]),
             ],
