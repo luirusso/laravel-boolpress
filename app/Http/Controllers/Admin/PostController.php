@@ -140,6 +140,15 @@ class PostController extends Controller
 
         $post = Post::find($id);
 
+        // ADD OR UPDATE IMAGE IF PRESENT
+        if(array_key_exists('cover', $data)) {
+            // REMOVE IF IMAGE IS ALREADY PRESENT
+            if($post->cover) {
+                Storage::delete($post->cover);
+            }
+            $data['cover'] = Storage::put('posts-covers', $data['cover']);
+        }
+
         if($data['title'] != $post->title) {
             $slug = Str::slug($data['title'], '-');
             $count = 1;
@@ -175,9 +184,14 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
+        // CHECK IF COVER IS PRESENT
+        if($post->cover) {
+            Storage::delete($post->cover);
+        }
+
         $post->delete();
 
-        $post->tags()->detach();
+        // $post->tags()->detach();
 
         return redirect()->route('admin.posts.index')->with('deleted', $post->title);
     }

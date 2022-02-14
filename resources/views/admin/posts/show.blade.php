@@ -18,7 +18,7 @@
         </div>
 
         <div class="row mb-5">
-            <div class="col-md-6">
+            <div class="{{ $post->cover ? 'col-md-6' : 'col' }}">
                 {!! $post->content !!}
             </div>
             @if($post->cover)

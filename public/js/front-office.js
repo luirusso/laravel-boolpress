@@ -2220,6 +2220,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -3854,7 +3855,11 @@ var render = function () {
                 _vm._v(_vm._s(_vm.post.title)),
               ]),
               _vm._v(" "),
-              _c("h4", [_vm._v("Category: " + _vm._s(_vm.post.category.name))]),
+              _vm.post.category
+                ? _c("h4", [
+                    _vm._v("Category: " + _vm._s(_vm.post.category.name)),
+                  ])
+                : _c("h4", [_vm._v("Uncategorized")]),
               _vm._v(" "),
               _c("Tags", {
                 staticClass: "mb-5",

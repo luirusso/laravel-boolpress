@@ -2,7 +2,8 @@
     <section class="container">
         <div v-if="post">
             <h1 class="mb-5">{{ post.title }}</h1>
-            <h4>Category: {{ post.category.name }}</h4>
+            <h4 v-if="post.category">Category: {{ post.category.name }}</h4>
+            <h4 v-else>Uncategorized</h4>
 
             <!-- <div class="mb-5">
                 <span v-for="tag in post.tags" :key="`tag-${tag.id}`" class="badge badge-primary mr-2">{{ tag.name }}</span>
