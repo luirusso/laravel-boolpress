@@ -22,7 +22,12 @@ class HomeController extends Controller
         // Mail::to('account@mail.it')->send(new SendWelcomeEmail() );
 
         // WITH AUTH
-        Mail::to(Auth::user()->email)->send(new SendWelcomeEmail() );
+        // Mail::to(Auth::user()->email)->send(new SendWelcomeEmail() );
+
+        // WITH DATA AND CLASSES
+        Mail::to(Auth::user()->email)->send(new SendWelcomeEmail(Auth::user()->name) );
+
+
 
 
         return view('admin.home');
