@@ -21,6 +21,11 @@
             <div class="col-md-6">
                 {!! $post->content !!}
             </div>
+            @if($post->cover)
+                <div class="col-md-6">
+                    <img class="img-fluid" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
+                </div>
+            @endif
         </div>
 
         @if(!$post->tags->isEmpty() )
